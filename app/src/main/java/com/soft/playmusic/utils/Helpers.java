@@ -58,12 +58,12 @@ public class Helpers {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-            String appName = "Timber";
+            String appName = "PlayMusic";
             try {
                 PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
                 String version = pInfo.versionName;
                 int versionCode = pInfo.versionCode;
-                appName = "Timber " + version;
+                appName = "PlayMusic " + version;
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
@@ -71,7 +71,7 @@ public class Helpers {
             return new MaterialDialog.Builder(getActivity())
                     .title(appName)
                     .content(Html.fromHtml(getString(R.string.about_dialog_body)))
-                    .positiveText("Dismiss")
+                    .positiveText(R.string.dismiss)
                     .build();
         }
 

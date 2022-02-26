@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="55dp">
+    android:orientation="vertical">
 
-    <com.soft.playmusic.widgets.BaseRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_weight="1"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadeScrollbars="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_marginBottom="55dp">
 
-    <include layout="@layout/empty_view"/>
+        <com.soft.playmusic.widgets.BaseRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.soft.playmusic.widgets.FastScroller
-        android:id="@+id/fastscroller"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignBottom="@id/recyclerview"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/recyclerview" />
+        <include layout="@layout/empty_view"/>
 
-</RelativeLayout>
+        <com.soft.playmusic.widgets.FastScroller
+            android:id="@+id/fastscroller"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/recyclerview"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/recyclerview" />
+
+    </RelativeLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-7471220027528882/3469940753">
+    </com.google.android.gms.ads.AdView>
+
+
+</LinearLayout>
+
