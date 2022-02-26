@@ -274,11 +274,7 @@ public class BaseActivity extends ATEActivity implements
         }
     }
 
-    public void removeMusicStateListenerListener(final MusicStateListener status) {
-        if (status != null) {
-            mMusicStateListener.remove(status);
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

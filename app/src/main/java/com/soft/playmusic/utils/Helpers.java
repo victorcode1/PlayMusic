@@ -45,8 +45,11 @@ public class Helpers {
         new AboutDialog().show(ft, "dialog_about");
     }
 
+    //Metodo que controla el tema por defecto en caso de ser true : getBoolean("dark_theme", true)
+    //La app empezara con el tema oscuro
+
     public static String getATEKey(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dark_theme", false) ?
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dark_theme", true) ?
                 "dark_theme" : "light_theme";
     }
 

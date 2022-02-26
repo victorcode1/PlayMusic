@@ -179,7 +179,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         action = getIntent().getAction();
 
-        isDarkTheme = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("dark_theme", false);
+        isDarkTheme = PreferenceManager
+                .getDefaultSharedPreferences(this).getBoolean("dark_theme", true);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
