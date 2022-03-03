@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeBaseDark" parent="Theme.AppCompat.NoActionBar">
+
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:navigationBarDividerColor">@android:color/white</item>
+        <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDarkTheme</item>
+        <item name="colorAccent">@color/colorAccentDarkTheme</item>
+        <item name="android:windowBackground">@color/window_background_dark</item>
+        <item name="cardStyle">@style/CardViewStyle.Dark</item>
+        <item name="accentColor">@color/colorAccentDarkTheme</item>
+        <item name="iconColor">@android:color/white</item>
+        <item name="windowBackground">@color/window_background_dark</item>
+        <item name="stateSelector">@color/state_selector_dark</item>
+        <item name="progressBackgroundColor">@color/progressBackgroundColorDark</item>
+        <item name="progressDrawable">@drawable/progress_drawable_dark</item>
+        <item name="progressDrawableWithBackground">
+            @drawable/progress_drawable_withbackground_dark
+        </item>
+        <item name="ate_key">dark_theme</item>
+
+    </style>
+</resources>

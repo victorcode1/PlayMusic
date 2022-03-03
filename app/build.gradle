@@ -3,6 +3,20 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/weebock/StudioProjects/KeysPath/MusicPlayers/Untitled')
+            storePassword 'helloword0702'
+            keyAlias 'key0'
+            keyPassword 'helloword0702'
+        }
+        release {
+            storeFile file('/Users/weebock/StudioProjects/KeysPath/MusicPlayers/Untitled')
+            keyAlias 'key0'
+            keyPassword 'helloword0702'
+            storePassword 'helloword0702'
+        }
+    }
     compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
@@ -15,6 +29,7 @@ android {
         renderscriptTargetApi 16
         renderscriptSupportModeEnabled false
         multiDexEnabled true
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
@@ -30,12 +45,16 @@ android {
         }
     }
 
-    lintOptions {
-        disable 'MissingTranslation'
-        disable 'ExtraTranslation'
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '32.0.0'
+    ndkVersion '23.1.7779620'
+
 
 }
+
 
 repositories {
     jcenter()
@@ -51,15 +70,15 @@ dependencies {
     implementation "androidx.percentlayout:percentlayout:1.0.0"
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation "androidx.mediarouter:mediarouter:1.1.0"
-    implementation 'com.google.android.gms:play-services-cast-framework:16.1.2'
+    implementation "androidx.mediarouter:mediarouter:1.2.6"
+    implementation 'com.google.android.gms:play-services-cast-framework:21.0.1'
 
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-    implementation 'net.steamcrafted:materialiconlib:1.1.4'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'net.steamcrafted:materialiconlib:1.1.5'
     implementation 'com.squareup.retrofit:retrofit:1.9.0'
-    implementation 'com.squareup.okhttp:okhttp-urlconnection:2.3.0'
-    implementation 'com.squareup.okhttp:okhttp:2.3.0'
-    implementation 'com.google.code.gson:gson:2.3'
+    implementation 'com.squareup.okhttp:okhttp-urlconnection:2.7.5'
+    implementation 'com.squareup.okhttp:okhttp:2.7.5'
+    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'de.Maxr1998:track-selector-lib:1.2'
 
     implementation 'com.afollestad.material-dialogs:core:0.9.0.2'
@@ -68,10 +87,11 @@ dependencies {
     implementation('com.github.naman14:app-theme-engine:0.5.2@aar') {
         transitive = true
     }
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
+
 
     implementation 'com.anjlab.android.iab.v3:library:1.0.+'
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
+
 }
 
 apply from: '../mock.gradle'
