@@ -92,6 +92,9 @@ dependencies {
     implementation 'com.anjlab.android.iab.v3:library:1.0.+'
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
 
+    // Firebase
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+
 }
 
 apply from: '../mock.gradle'

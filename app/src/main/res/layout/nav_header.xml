@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="208dp"
     android:background="?attr/colorPrimaryDark"
@@ -13,7 +13,16 @@
         android:scaleType="centerCrop"
         android:id="@+id/album_art"/>
 
+    <WebView
+        android:id="@+id/perfilwebView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="50dp" />
+
     <LinearLayout
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -48,9 +57,5 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/selectableItemBackground"/>
 
-</FrameLayout>
+</RelativeLayout>

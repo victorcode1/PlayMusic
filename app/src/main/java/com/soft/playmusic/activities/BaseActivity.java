@@ -17,6 +17,7 @@ package com.soft.playmusic.activities;
 
 import static com.soft.playmusic.MusicPlayer.mService;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,11 +35,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
 import com.afollestad.appthemeengine.ATE;
 import com.afollestad.appthemeengine.ATEActivity;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
+import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
@@ -46,6 +55,10 @@ import com.google.android.gms.cast.framework.SessionManager;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.soft.playmusic.ITimberService;
 import com.soft.playmusic.MusicPlayer;
 import com.soft.playmusic.MusicService;
@@ -62,10 +75,12 @@ import com.soft.playmusic.utils.TimberUtils;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BaseActivity extends ATEActivity implements
         ServiceConnection, MusicStateListener {
-
+    private FirebaseAuth mAuth;
     private final ArrayList<MusicStateListener> mMusicStateListener = new ArrayList<>();
     private MusicPlayer.ServiceToken mToken;
     private PlaybackStatus mPlaybackStatus;
@@ -77,6 +92,98 @@ public class BaseActivity extends ATEActivity implements
     private WebServer castServer;
 
     public boolean playServicesAvailable = false;
+
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(),
+            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
+                @Override
+                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
+                    onSignInResult(result);
+                }
+            }
+    );
+    private String urlPerfil;
+
+    public void createSignInIntent() {
+
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.TwitterBuilder().build());
+
+        // Create and launch sign-in intent
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setLogo(R.drawable.logo)
+                .setAvailableProviders(providers)
+                .build();
+        signInLauncher.launch(signInIntent);
+        // [END auth_fui_create_intent]
+    }
+
+    private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
+        IdpResponse response = result.getIdpResponse();
+        if (result.getResultCode() == RESULT_OK) {
+            // Successfully signed in
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        } else {
+            // Sign in failed. If response is null the user canceled the
+            // sign-in flow using the back button. Otherwise check
+            // response.getError().getErrorCode() and handle the error.
+            // ...
+        }
+    }
+    public void signOut() {
+        // [START auth_fui_signout]
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // ...
+                    }
+                });
+        // [END auth_fui_signout]
+    }
+    public void checkCurrentUser() {
+        // [START check_current_user]
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            urlPerfil = user.getPhotoUrl().toString();
+        } else {
+            // No user is signed in
+            createSignInIntent();
+        }
+        // [END check_current_user]
+    }
+
+    public String getUrlPerfil() {
+        return urlPerfil;
+    }
+
+    public void getUserProfile() {
+        // [START get_user_profile]
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            String uid = user.getUid();
+        }
+        // [END get_user_profile]
+    }
+
+
 
     private class SessionManagerListenerImpl extends SimpleSessionManagerListener {
         @Override
@@ -119,7 +226,7 @@ public class BaseActivity extends ATEActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mAuth = FirebaseAuth.getInstance();
         mToken = MusicPlayer.bindToService(this, this);
 
         mPlaybackStatus = new PlaybackStatus(this);
@@ -375,7 +482,7 @@ public class BaseActivity extends ATEActivity implements
                 } else if (action.equals(MusicService.PLAYLIST_CHANGED)) {
                     baseActivity.onPlaylistChanged();
                 } else if (action.equals(MusicService.TRACK_ERROR)) {
-                    final String errorMsg = context.getString(R.string.error_playing_track,
+                   final String errorMsg = context.getString(R.string.error_playing_track,
                             intent.getStringExtra(MusicService.TrackErrorExtra.TRACK_NAME));
                     Toast.makeText(baseActivity, errorMsg, Toast.LENGTH_SHORT).show();
                 }

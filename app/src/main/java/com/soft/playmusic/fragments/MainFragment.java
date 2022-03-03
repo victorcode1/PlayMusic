@@ -31,6 +31,7 @@ import android.view.ViewGroup;
 import com.afollestad.appthemeengine.ATE;
 import com.afollestad.appthemeengine.Config;
 import com.soft.playmusic.R;
+import com.soft.playmusic.activities.MainActivity;
 import com.soft.playmusic.utils.ATEUtils;
 import com.soft.playmusic.utils.Helpers;
 import com.soft.playmusic.utils.PreferencesUtility;
@@ -102,6 +103,7 @@ public class MainFragment extends Fragment {
         }
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
@@ -113,6 +115,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        ( (MainActivity) getActivity()).checkCurrentUser();
+        ( (MainActivity) getActivity()).mAsigarPerfil();
     }
 
     static class Adapter extends FragmentPagerAdapter {

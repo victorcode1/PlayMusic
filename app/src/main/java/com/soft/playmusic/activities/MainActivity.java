@@ -15,6 +15,7 @@
 package com.soft.playmusic.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +32,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,7 +64,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends BaseActivity implements ATEActivityThemeCustomizer {
-
+    private WebView imagePerfil;
     private SlidingUpPanelLayout panelLayout;
     private NavigationView navigationView;
     private TextView songtitle, songartist;
@@ -165,6 +167,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             finish();
         }
     };
+    private int controlHander = 0;
 
 
     @Override
@@ -173,7 +176,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         action = getIntent().getAction();
 
         isDarkTheme = PreferenceManager
-                .getDefaultSharedPreferences(this).getBoolean("dark_theme", true);
+                .getDefaultSharedPreferences(this).getBoolean("dark_theme", false);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -191,11 +194,12 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = navigationView.inflateHeaderView(R.layout.nav_header);
-
+        imagePerfil = (WebView)header.findViewById(R.id.perfilwebView) ;
         albumart = (ImageView) header.findViewById(R.id.album_art);
         songtitle = (TextView) header.findViewById(R.id.song_title);
         songartist = (TextView) header.findViewById(R.id.song_artist);
-
+        imagePerfil.getSettings().setJavaScriptEnabled(true);
+        imagePerfil.zoomIn();
         setPanelSlideListeners(panelLayout);
 
         navDrawerRunnable.postDelayed(new Runnable() {
@@ -383,7 +387,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 break;
             case R.id.nav_nowplaying:
                 if (getCastSession() != null) {
-                    startActivity(new Intent(MainActivity.this, ExpandedControlsActivity.class));
+                    startActivity(new Intent(MainActivity.this,
+                            ExpandedControlsActivity.class));
                 } else {
                     NavigationUtils.navigateToNowplaying(MainActivity.this, false);
                 }
@@ -449,6 +454,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     }
 
+
     @Override
     public void onRequestPermissionsResult(
             int requestCode, String[] permissions, int[] grantResults) {
@@ -479,7 +485,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        getSupportFragmentManager().findFragmentById(R.id.fragment_container).onActivityResult(requestCode, resultCode, data);
+        getSupportFragmentManager().
+                findFragmentById(R.id.fragment_container)
+                .onActivityResult(requestCode, resultCode, data);
     }
 
 
@@ -498,6 +506,31 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         panelLayout.showPanel();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mAsigarPerfil();
+    }
+
+    public void mAsigarPerfil() {
+      if(getUrlPerfil()!=null){
+          imagePerfil.setVisibility(View.VISIBLE);
+          imagePerfil.loadUrl(getUrlPerfil());
+      }else if(controlHander <= 50){
+          controlHander++;
+          imagePerfil.setVisibility(View.GONE);
+          Handler handler = new Handler();
+          handler.postDelayed(new Runnable() {
+              @Override
+              public void run() {
+                  checkCurrentUser();
+                  mAsigarPerfil();
+              }
+          },5000);
+      }
+    }
+
 }
 
 

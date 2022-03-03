@@ -49,7 +49,7 @@ public class Helpers {
     //La app empezara con el tema oscuro
 
     public static String getATEKey(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dark_theme", true) ?
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dark_theme", false) ?
                 "dark_theme" : "light_theme";
     }
 
