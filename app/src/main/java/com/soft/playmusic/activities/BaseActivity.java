@@ -17,7 +17,6 @@ package com.soft.playmusic.activities;
 
 import static com.soft.playmusic.MusicPlayer.mService;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -29,7 +28,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,10 +38,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.afollestad.appthemeengine.ATE;
 import com.afollestad.appthemeengine.ATEActivity;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.AdapterStatus;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
@@ -68,7 +62,6 @@ import com.soft.playmusic.utils.TimberUtils;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class BaseActivity extends ATEActivity implements
         ServiceConnection, MusicStateListener {
@@ -142,14 +135,6 @@ public class BaseActivity extends ATEActivity implements
 
         if (playServicesAvailable)
             initCast();
-
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-                Map<String, AdapterStatus> status = initializationStatus.getAdapterStatusMap();
-                Log.w("ADDMOB",status.toString());
-            }
-        });
     }
 
     @Override
@@ -390,7 +375,7 @@ public class BaseActivity extends ATEActivity implements
                 } else if (action.equals(MusicService.PLAYLIST_CHANGED)) {
                     baseActivity.onPlaylistChanged();
                 } else if (action.equals(MusicService.TRACK_ERROR)) {
-                    @SuppressLint("StringFormatInvalid") final String errorMsg = context.getString(R.string.error_playing_track,
+                    final String errorMsg = context.getString(R.string.error_playing_track,
                             intent.getStringExtra(MusicService.TrackErrorExtra.TRACK_NAME));
                     Toast.makeText(baseActivity, errorMsg, Toast.LENGTH_SHORT).show();
                 }

@@ -168,15 +168,11 @@
     <string name="lyrics_loading">Loading...</string>
 
     <string name="about_dialog_body"><![CDATA[
-    <b>PlayMusic</b> is a fully featured open source music player.<br/><br/>
-    Designed and developed by <b>Victor Flores</b>. Check out my
+    <b>Timber</b> is a fully featured open source music player.<br/><br/>
+    Designed and developed by <b>Naman Dwivedi</b>. Check out my
     <a href="https://namand.in">Website</a> and <a href="https://github.com/naman14/Timber">GitHub</a>
     <br/><br/>Also checkout <a href="https://play.google.com/store/apps/details?id=com.naman14.timberx">TimberX</a>,
     material themed music player that works across all form factors.
     ]]></string>
     <string name="create_new">Create new playlist</string>
-    <string name="support">Support development</string>
-    <string name="support2">Show your appreciation and support the development of Music Player.</string>
-    <string name="support3">Thanks for your support!</string>
-    <string name="dismiss">Dismiss</string>
 </resources>

@@ -9,8 +9,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.afollestad.appthemeengine.ATE;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.View;

@@ -27,12 +27,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.soft.playmusic.R;
 import com.soft.playmusic.activities.BaseActivity;
 import com.soft.playmusic.adapters.SongsListAdapter;
@@ -48,7 +42,6 @@ import com.soft.playmusic.widgets.FastScroller;
 import java.util.List;
 
 public class SongsFragment extends Fragment implements MusicStateListener {
-    private AdView mAdView;
 
     private SongsListAdapter mAdapter;
     private BaseRecyclerView recyclerView;
@@ -73,15 +66,6 @@ public class SongsFragment extends Fragment implements MusicStateListener {
 
         new loadSongs().execute("");
         ((BaseActivity) getActivity()).setMusicStateListenerListener(this);
-
-        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-        mAdView = rootView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
         return rootView;
     }

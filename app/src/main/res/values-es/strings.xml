@@ -115,15 +115,4 @@
     <string name="durationformatshort" translatable="false"><xliff:g id="format">%2$d:%3$02d</xliff:g></string>
     <string name="durationformatlong" translatable="false"><xliff:g id="format">%1$d:%2$02d:%3$02d</xliff:g></string>
     <string name="create_new">Crear nuevo playlist</string>
-    <string name="support">Apoya al desarrollaor</string>
-    <string name="support2">Muestre su aprecio y apoye el desarrollo de Music Player.</string>
-    <string name="about_dialog_body"><![CDATA[
-    <b>PlayMusic</b> es un reproductor de música de código abierto con todas las funciones.<br/><br/>
-    modificado por <b>Victor Flores</b>. Echa un vistazo a mi
-    <a href="https://namand.in">Website</a> and <a href="https://github.com/naman14/Timber">GitHub</a>
-    <br/><br/>También echa un vistazo a <a href="https://play.google.com/store/apps/details?id=com.naman14.timberx">TimberX</a>,
-    reproductor de música con temas de material que funciona en todos los factores de forma. Comunicate con migo
-    al correo <a href="victorflores20511@gmail.com">victorflores20511@gmail.com</a>
-    ]]></string>
-    <string name="dismiss">Cerrar</string>
 </resources>

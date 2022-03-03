@@ -19,13 +19,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.fragment.app.Fragment;
@@ -184,7 +177,6 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         navigationMap.put(Constants.NAVIGATE_LIBRARY, navigateLibrary);
         navigationMap.put(Constants.NAVIGATE_PLAYLIST, navigatePlaylist);

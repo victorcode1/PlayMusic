@@ -25,14 +25,15 @@ import java.util.List;
 
 /**
  * Created by naman on 29/10/16.
- */public class DonateActivity extends BaseThemedActivity implements BillingProcessor.IBillingHandler {
+ */
+public class DonateActivity extends BaseThemedActivity implements BillingProcessor.IBillingHandler {
 
-    private static final String DONATION_1 = "naman14.timber.donate_1";
-    private static final String DONATION_2 = "naman14.timber.donate_2";
-    private static final String DONATION_3 = "naman14.timber.donate_3";
-    private static final String DONATION_5 = "naman14.timber.donate_5";
-    private static final String DONATION_10 = "naman14.timber.donate_10";
-    private static final String DONATION_20 = "naman14.timber.donate_20";
+    private static final String DONATION_1 = "soft.playmusic.donate_1";
+    private static final String DONATION_2 = "soft.playmusic.donate_2";
+    private static final String DONATION_3 = "soft.playmusic.donate_3";
+    private static final String DONATION_5 = "soft.playmusic.donate_5";
+    private static final String DONATION_10 = "soft.playmusic.donate_10";
+    private static final String DONATION_20 = "soft.playmusic.donate_20";
 
 
     private boolean readyToPurchase = false;
@@ -53,7 +54,7 @@ import java.util.List;
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.support);
+        getSupportActionBar().setTitle("Support development");
         action = getIntent().getAction();
 
         productListView = (LinearLayout) findViewById(R.id.product_list);
@@ -82,7 +83,7 @@ import java.util.List;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(DonateActivity.this, R.string.support3, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DonateActivity.this, "Thanks for your support!", Toast.LENGTH_SHORT).show();
             }
         });
     }
