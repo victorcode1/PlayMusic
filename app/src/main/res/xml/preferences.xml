@@ -2,6 +2,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- Pestaña de reproducir ahora -->
+
     <com.soft.playmusic.widgets.ThemedPreferenceCategory android:title="@string/now_playing">
 
         <Preference
@@ -11,10 +13,13 @@
 
     </com.soft.playmusic.widgets.ThemedPreferenceCategory>
 
+
+    <!-- Pestaña de Personalizacion -->
+
     <com.soft.playmusic.widgets.ThemedPreferenceCategory android:title="@string/personalisation">
 
         <com.afollestad.appthemeengine.prefs.ATECheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="dark_theme"
             android:persistent="true"
             android:summary="@string/dark_theme_summary"
@@ -54,6 +59,8 @@
 
     </com.soft.playmusic.widgets.ThemedPreferenceCategory>
 
+    <!-- Pestaña de otros -->
+
     <com.soft.playmusic.widgets.ThemedPreferenceCategory android:title="@string/other">
 
         <com.afollestad.appthemeengine.prefs.ATEListPreference
@@ -87,6 +94,8 @@
             app:ateKey_pref_checkBox="?ate_key" />
 
     </com.soft.playmusic.widgets.ThemedPreferenceCategory>
+
+    <!--
 
     <com.soft.playmusic.widgets.ThemedPreferenceCategory android:title="LastFM">
 
@@ -130,19 +139,21 @@
 
     </com.soft.playmusic.widgets.ThemedPreferenceCategory>
 
+    -->
+
     <com.soft.playmusic.widgets.ThemedPreferenceCategory android:title="Support">
 
         <Preference
             android:key="support_development"
-            android:summary="Support the development of Timber and unlock all now playing styles"
-            android:title="Support development" />
+            android:summary="@string/suportdev1"
+            android:title="@string/supportdev" />
 
-        <Preference
-            android:key="restore_purchases"
-            android:summary="Restore previous purchases"
-            android:title="Restore purchases" />
+               <Preference
+                   android:key="restore_purchases"
+                   android:summary="@string/rest2"
+                   android:title="@string/rest" />
 
-    </com.soft.playmusic.widgets.ThemedPreferenceCategory>
+           </com.soft.playmusic.widgets.ThemedPreferenceCategory>
 
 
-</PreferenceScreen>
+       </PreferenceScreen>

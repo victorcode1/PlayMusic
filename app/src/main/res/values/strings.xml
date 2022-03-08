@@ -175,4 +175,9 @@
     material themed music player that works across all form factors.
     ]]></string>
     <string name="create_new">Create new playlist</string>
+    <string name="permisos">Music Player will need to read external storage to display songs on your device.</string>
+    <string name="supportdev">Support development</string>
+    <string name="suportdev1">Support the development of Music Player </string>
+    <string name="rest">Restore purchases</string>
+    <string name="rest2">Restore previous purchases</string>
 </resources>

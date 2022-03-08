@@ -35,7 +35,8 @@ import com.soft.playmusic.subfragments.StyleSelectorFragment;
 import com.soft.playmusic.utils.Constants;
 import com.soft.playmusic.utils.PreferencesUtility;
 
-public class SettingsActivity extends BaseThemedActivity implements ColorChooserDialog.ColorCallback, ATEActivityThemeCustomizer {
+public class SettingsActivity extends BaseThemedActivity implements ColorChooserDialog.ColorCallback
+        , ATEActivityThemeCustomizer {
 
     private String action;
 

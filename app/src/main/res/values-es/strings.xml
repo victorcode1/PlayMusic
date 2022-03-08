@@ -102,6 +102,8 @@
     <string name="count_albums"><xliff:g id="count">%d</xliff:g> álbumes</string>
     <string name="count_artist"><xliff:g id="count">%d</xliff:g> artista</string>
     <string name="count_artists"><xliff:g id="count">%d</xliff:g> artistas</string>
+    <string name="switching_tracks_by_gestures">Cambiar de pista usando gestos</string>
+    <string name="albumart_lockscreen_summary">Mostrar la carátula del álbum en la pantalla de bloqueo</string>
 
     <string name="number_song_add_queue"><xliff:g example="1" id="number">%d</xliff:g> canción agregada a la cola.</string>
     <string name="number_songs_add_queue"><xliff:g example="1" id="number">%d</xliff:g> canciones agregada a la cola.</string>
@@ -115,4 +117,9 @@
     <string name="durationformatshort" translatable="false"><xliff:g id="format">%2$d:%3$02d</xliff:g></string>
     <string name="durationformatlong" translatable="false"><xliff:g id="format">%1$d:%2$02d:%3$02d</xliff:g></string>
     <string name="create_new">Crear nuevo playlist</string>
+    <string name="supportdev">Apoyar el desarrollo</string>
+    <string name="suportdev1">Apoya el desarrollo de Music Player.</string>
+    <string name="permisos">Music Player necesitará leer el almacenamiento externo para mostrar canciones en su dispositivo.</string>
+    <string name="rest">Restaurar las compras</string>
+        <string name="rest2">Restaurar compras anteriores</string>
 </resources>

@@ -91,6 +91,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
         if (queryString != null){
             outState.putString("QUERY_STRING", queryString);
         }
+
     }
 
 
@@ -106,8 +107,9 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
 
         mSearchView.setIconifiedByDefault(false);
         mSearchView.setIconified(false);
+        MenuItem item = menu.findItem(R.id.menu_search);
 
-        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.menu_search), new MenuItemCompat.OnActionExpandListener() {
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
                 return true;
@@ -119,6 +121,8 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
                 return false;
             }
         });
+
+
 
         menu.findItem(R.id.menu_search).expandActionView();
 

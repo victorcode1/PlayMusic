@@ -17,6 +17,7 @@ package com.soft.playmusic.fragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -75,7 +76,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         xposed = findPreference(XPOSED);
 
         lastFMlogin = findPreference(LASTFM_LOGIN);
-        updateLastFM();
+        //updateLastFM();
 //        themePreference = (ListPreference) findPreference(KEY_THEME);
         startPagePreference = (ListPreference) findPreference(KEY_START_PAGE);
 
@@ -143,6 +144,8 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             }
         });
 
+
+/**
         xposed.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -162,16 +165,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     extras.putString("lf_token","logout");
                     extras.putString("lf_user",null);
                     mPreferences.updateService(extras);
-                    updateLastFM();
+                    //updateLastFM();
                 } else {
                     LastFmLoginDialog lastFmLoginDialog = new LastFmLoginDialog();
-                    lastFmLoginDialog.show(getChildFragmentManager(), LastFmLoginDialog.FRAGMENT_NAME);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                        lastFmLoginDialog.show(getChildFragmentManager(), LastFmLoginDialog.FRAGMENT_NAME);
+                    }
 
                 }
                 return true;
             }
         });
-
+ **/
     }
 
     @Override

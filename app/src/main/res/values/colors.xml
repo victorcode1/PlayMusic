@@ -8,7 +8,7 @@
 
     <color name="colorPrimary">#673AB7</color>
     <color name="colorPrimaryDark">#512DA8</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#673AB7</color>
 
     <color name="colorPrimaryDarkTheme">#4a4959</color>
     <color name="colorPrimaryDarkDarkTheme">#525065</color>
@@ -20,7 +20,7 @@
 
     <color name="colorSelectableItemWhite">#77ffffff</color>
 
-    <color name="pink_transparent">#44700d39</color>
+    <color name="pink_transparent">#3F51B5</color>
     <color name="green_transparent">#44375a1f</color>
     <color name="blue_transparent">#44293576</color>
     <color name="red_transparent">#447f3907</color>
@@ -33,7 +33,7 @@
     <color name="progressBackgroundColorDark">#33ffffff</color>
 
     <color name="colorPrimaryLightDefault">#FAFAFA</color>
-    <color name="colorAccentLightDefault">#E91E63</color>
+    <color name="colorAccentLightDefault">#673AB7</color>
 
     <color name="colorPrimaryDarkDefault">#37474F</color>
     <color name="colorAccentDarkDefault">#2196F3</color>
